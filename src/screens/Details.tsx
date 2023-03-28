@@ -1,18 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { StackNavigatorRoutesProps } from "../routes/app.routes";
 
-export default function Home() {
-  const navigation = useNavigation<StackNavigatorRoutesProps>();
+export default function Details() {
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
-      <Button
-        title="Go to details"
-        onPress={() => navigation.navigate("details")}
-      />
+      <Text>Details</Text>
+      <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
 }
