@@ -1,9 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useContext } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { AuthContext } from "../context/AuthContext";
 import { AuthNavigatorRoutesProps } from "../routes/auth.routes";
 
 export default function SignIn() {
+  const { signIn } = useContext(AuthContext);
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   return (
@@ -13,6 +15,10 @@ export default function SignIn() {
       <Text style={{ marginBottom: 12 }}>
         This screen is using stack navigation
       </Text>
+
+      <Button title="Login" onPress={signIn} />
+
+      <View style={{ height: 16 }} />
 
       <Button
         title="Go to sign up"
