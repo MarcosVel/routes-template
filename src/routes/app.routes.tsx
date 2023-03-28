@@ -29,13 +29,11 @@ const Drawer = createDrawerNavigator();
 // the stack routes is called in the tab routes
 function StackRoutes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="home"
         component={Home}
-        // options to show the menu icon to open the drawer
         options={({ navigation }) => ({
-          title: "", // removing the title "home" to show only the menu icon
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
               <MaterialIcons name="menu" size={25} />
@@ -67,23 +65,11 @@ function TabRoutes() {
       <Tab.Screen
         name="settings"
         component={Settings}
-        options={({ navigation }) => ({
-          headerShown: true, // activating the header to get the drawer menu
-          title: "", // removing the title "settings" to show only the menu icon
-          headerLeft: () => (
-            <TouchableOpacity
-              style={{ marginLeft: 16 }}
-              onPress={() => navigation.toggleDrawer()}
-            >
-              <MaterialIcons name="menu" size={25} />
-            </TouchableOpacity>
-          ),
-
-          tabBarLabel: "settings", // renaming the tab label because the title is ""
+        options={{
           tabBarIcon: ({ color, size }) => (
             <Feather name="settings" color={color} size={size} />
           ),
-        })}
+        }}
       />
     </Tab.Navigator>
   );
@@ -91,15 +77,11 @@ function TabRoutes() {
 
 function DrawerRoutes() {
   return (
-    <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen
-        name="Home"
-        component={TabRoutes}
-        // setting to false to be able to access only the header of the stack routes in details screen
-        // this way we have the go back header in details screen
-        options={{ headerShown: false }}
-      />
-
+    <Drawer.Navigator
+      initialRouteName="Home"
+      screenOptions={{ headerTitle: "" }}
+    >
+      <Drawer.Screen name="Home" component={TabRoutes} />
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
   );
