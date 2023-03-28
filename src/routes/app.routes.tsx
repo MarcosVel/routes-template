@@ -1,15 +1,19 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
-import Settings from "../screens/Settings";
 import Feather from "@expo/vector-icons/Feather";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import Home from "../screens/Home";
+import Profile from "../screens/Profile";
+import Settings from "../screens/Settings";
 
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
-export function TabRoutes() {
+// the tab routes is included in the drawer routes
+function TabRoutes() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
-        name="Home"
+        name="home"
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -18,7 +22,7 @@ export function TabRoutes() {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="settings"
         component={Settings}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -29,3 +33,18 @@ export function TabRoutes() {
     </Tab.Navigator>
   );
 }
+
+function DrawerRoutes() {
+  return (
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen
+        name="Home"
+        component={TabRoutes}
+        options={{ headerTitle: "" }}
+      />
+      <Drawer.Screen name="Profile" component={Profile} />
+    </Drawer.Navigator>
+  );
+}
+
+export { DrawerRoutes as AppRoutes };
