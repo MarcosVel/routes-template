@@ -3,6 +3,9 @@
 
 This repository contains a native stack, drawer and bottom tabs that can be used as a starting point for your own project. The stack navigator is set up with some initial screens and the drawer and bottom tabs are pre-configured with some example routes. You can use this repository to quickly get started with your own project without having to worry about setting up the navigation yourself.
 
+## Example
+[routestemplate.webm](https://user-images.githubusercontent.com/62637265/228417458-1741263a-7ec4-485e-b2e8-df08745ef5ed.webm)
+
 ## How to install
 
 Clone the project
